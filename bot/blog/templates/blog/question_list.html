@@ -1,0 +1,28 @@
+	{% extends 'blog/base_blog.html' %}
+
+
+	{% block title %}
+
+	    Questions
+	    
+	{% endblock %}
+
+
+	{% block content %}
+
+	<h1 class="mb-5">Questions</h1>
+
+	<a type="button" href="{% url 'intro_page' %}" class="btn btn-danger mb-4">Add</a>
+
+	{% for question in questions %}
+
+	<div class="card mb-4">
+		<div class="card-body">
+			<p class="card-text">{{ question.text }}</p>
+			<a href="#" class="btn btn-primary">Read</a>
+		</div>
+	</div>
+
+		
+		{% endfor %}
+	{% endblock %}
