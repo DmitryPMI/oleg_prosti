@@ -21,13 +21,13 @@ def events_page(request):
 	return render(request, 'blog/events_add.html')
 
 
-def events_delete(request):
-	event = Event.objects.get(text=request.POST["text_event"], post_date=request.POST["date_event"])
+def events_delete_query(request):
+	event = Event.objects.get(text=request.POST["text_event"],  post_date=request.POST["date_event"])
 	event.delete()
-	return HttpResponseRedirect(reverse('event_list_url'))
+	return HttpResponseRedirect(reverse('events_delete_page'))
 
 def events_delete_page(request):
-	return render(request, 'blog/event_list_url.html')
+	return render(request, 'blog/events_delete.html')
 
 
 def intro_question_list(request):
