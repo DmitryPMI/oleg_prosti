@@ -1,0 +1,20 @@
+	{% extends 'blog/base_blog.html' %}
+
+	{% block title %}
+
+		 Intro Add 
+		    
+	{% endblock %}
+
+	{% block content %}
+	<h1 class="mb-5">Add intro question</h1>
+
+	<form action="{% url 'intro_add' %}" method="post">{% csrf_token %}
+	  <div class="form-group">
+	    <label for="exampleFormControlTextarea1"> <h2>Text</h2> </label>
+	    <textarea class="form-control" name="text_question" rows="1"></textarea>
+	  </div>
+	  
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	{% endblock %}
