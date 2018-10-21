@@ -15,17 +15,20 @@
 
 	{% for event in events %}
 
-	<div class="card mb-4">
-		<div class="card-header">
-			{{ event.date_pub }}
+	<form action="{% url 'events_delete_page' %}" method="post">{% csrf_token %}
+		<div class="card mb-4">
+			<div class="card-header" name="date_event">
+				{{ event.date_pub }}
+			</div>
+			<div class="card-body">
+				<h5 class="card-title", name="text_event">{{ event.title }}</h5>
+				<p class="card-text">{{ event.body|truncatewords:15 }}</p>
+				<div class="card-body">
+					<button type="submit" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
 		</div>
-		<div class="card-body">
-			<h5 class="card-title">{{ event.title }}</h5>
-			<p class="card-text">{{ event.body|truncatewords:15 }}</p>
-			<a href="#" class="btn btn-primary">Read</a>
-		</div>
-	</div>
-
+	</form>
 		
 		{% endfor %}
 	{% endblock %}
