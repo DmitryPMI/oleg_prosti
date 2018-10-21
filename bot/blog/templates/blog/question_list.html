@@ -15,14 +15,19 @@
 	<a type="button" href="{% url 'intro_page' %}" class="btn btn-danger mb-4">Add</a>
 
 	{% for question in questions %}
-
-	<div class="card mb-4">
-		<div class="card-body">
-			<p class="card-text">{{ question.text }}</p>
-			<button type="submit" class="btn btn-primary">Delete</button>
+	<form action="{% url 'intro_delete' %}" method="post">{% csrf_token %}
+		<div class="card mb-4">
+			<div class="card-body">
+				<div>
+					<input type="hidden" name="id" value="{{ question.id }}">
+				</div>
+				<p class="card-text">{{ question.text }}</p>
+				<div class="card-body">
+					<button type="submit" class="btn btn-primary">Delete</button>
+				</div>
+			</div>
 		</div>
-	</div>
-
+	</form>
 		
 		{% endfor %}
 	{% endblock %}

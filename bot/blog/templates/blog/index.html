@@ -1,4 +1,4 @@
-	{% extends 'blog/base_blog.html' %}
+{% extends 'blog/base_blog.html' %}
 
 
 	{% block title %}
@@ -15,13 +15,14 @@
 
 	{% for event in events %}
 
-	<form action="{% url 'events_delete_page' %}" method="post">{% csrf_token %}
+	<form action="{% url 'events_delete' %}" method="post">{% csrf_token %}
 		<div class="card mb-4">
 			<div class="card-header" name="date_event">
-				{{ event.date_pub }}
+				{{ event.post_date }}
 			</div>
+			<input type="hidden" name="id" value="{{ event.id }}">
 			<div class="card-body">
-				<h5 class="card-title", name="text_event">{{ event.title }}</h5>
+				<h5 class="card-title", name="text_event">{{ event.text }}</h5>
 				<p class="card-text">{{ event.body|truncatewords:15 }}</p>
 				<div class="card-body">
 					<button type="submit" class="btn btn-primary">Delete</button>

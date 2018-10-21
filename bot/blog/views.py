@@ -22,9 +22,10 @@ def events_page(request):
 
 
 def events_delete_query(request):
-	event = Event.objects.get(text=request.POST["text_event"],  post_date=request.POST["date_event"])
+	event = Event.objects.get(pk=str(request.POST["id"]))
 	event.delete()
-	return HttpResponseRedirect(reverse('events_delete_page'))
+	return HttpResponseRedirect(reverse('event_list_url'))
+
 
 def events_delete_page(request):
 	return render(request, 'blog/events_delete.html')
@@ -43,3 +44,14 @@ def intro_add_query(request):
 
 def intro_page(request):
 	return render(request, 'blog/intro_add.html')
+
+
+def intro_delete_query(request):
+	print(request.POST["id"])
+	question = IntroQuestion.objects.get(pk=str(request.POST["id"]))
+	question.delete()
+	return HttpResponseRedirect(reverse('intro_question_list_url'))
+
+
+def intro_delete_page(request):
+	return render(request, 'blog/intro_delete.html')
