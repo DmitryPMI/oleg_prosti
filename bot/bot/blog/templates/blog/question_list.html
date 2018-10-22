@@ -1,0 +1,33 @@
+	{% extends 'blog/base_blog.html' %}
+
+
+	{% block title %}
+
+	    Questions
+	    
+	{% endblock %}
+
+
+	{% block content %}
+
+	<h1 class="mb-5">Questions</h1>
+
+	<a type="button" href="{% url 'intro_page' %}" class="btn btn-danger mb-4"><em>Add</em></a>
+
+	{% for question in questions %}
+	<form action="{% url 'intro_delete' %}" method="post">{% csrf_token %}
+		<div class="card mb-4">
+			<div class="card-body">
+				<div>
+					<input type="hidden" name="id" value="{{ question.id }}">
+				</div>
+				<p class="card-text">{{ question.text }}</p>
+				<div class="card-body">
+					<button type="submit" class="btn btn-primary"><em>Delete</em></button>
+				</div>
+			</div>
+		</div>
+	</form>
+		
+		{% endfor %}
+	{% endblock %}

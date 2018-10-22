@@ -1,0 +1,35 @@
+{% extends 'blog/base_blog.html' %}
+
+
+	{% block title %}
+
+	    Event list
+	    
+	{% endblock %}
+
+	{% block content %}
+
+	<h1 class="mb-5">Events</h1>
+
+	<a type="button" href="{% url 'events_page' %}" class="btn btn-danger mb-4"><em>Add</em></a>
+
+	{% for event in events %}
+
+	<form action="{% url 'events_delete' %}" method="post">{% csrf_token %}
+		<div class="card mb-4">
+			<div class="card-header" name="date_event">
+				{{ event.post_date }}
+			</div>
+			<input type="hidden" name="id" value="{{ event.id }}">
+			<div class="card-body">
+				<h5 class="card-title", name="text_event">{{ event.title }}</h5>
+				<p class="card-text">{{ event.body|truncatewords:15 }}</p>
+				<div class="card-body">
+					<button type="submit" class="btn btn-primary"><em>Delete</em></button>
+				</div>
+			</div>
+		</div>
+	</form>
+		
+		{% endfor %}
+	{% endblock %}
